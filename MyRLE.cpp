@@ -13,7 +13,7 @@ void codifica(char x[]);
 
 int main() {
 	
-	char x[] = "AABBBCCCCC";
+	char x[] = "AAAAAAAAAAABBBBBBBCCCCC";
 	
 	//codification funtion
 	printf("\n");
@@ -61,8 +61,15 @@ void codifica(char x[]) {
 		}
 
 		char qnt[3];
-		qnt[0] = cont + '0';
-		qnt[1] = '\0';
+		if (cont < 10) {
+			qnt[0] = cont + '0';
+			qnt[1] = '\0';
+		}
+		else {
+			
+			itoa(cont,qnt,10);
+		}
+		
 		if (cont >= 2) {
 			fprintf(saida_cod, qnt);
 			//print the number
@@ -80,7 +87,7 @@ void codifica(char x[]) {
 
 void decodifica() {
 	char caracter[MAX];
-	char aux[2];
+	char caracter_aux[3];
 	entrada_decod = fopen("saida_cod.txt", "r");
 	saida_decod = fopen("saida_decod.txt", "w");
 	saida_decod = fopen("saida_decod.txt", "a");
@@ -92,21 +99,28 @@ void decodifica() {
 	for (int i = 0; i < tamanho; i++) {
 		if ((caracter[i] > 'A' && caracter[i] < 'Z') || (caracter[i] == 'A' || caracter[i] == 'Z')) {
 			//if the next char is a digit, is write in the txt how many times it was happen
-			aux[0] = caracter[i];
-			aux[1] = '\0';
+			caracter_aux[0] = caracter[i];
+			caracter_aux[1] = '\0';
+			//below if different of 0 , mean that is a character
 			if (isdigit(caracter[i + 1]) != 0) {
 				// manipulation for convert string to int
-				aux[0] = caracter[i + 1];
-				aux[1] = '\0';
-				
-				int vezes = atoi(aux);
+				caracter_aux[0] = caracter[i + 1];
+				caracter_aux[1] = '\0';
+				// case the number have 2 digits
+				if (isdigit(caracter[i + 2]) != 0) {
+					caracter_aux[0] = caracter[i + 1];
+					caracter_aux[1] = caracter[i + 2];
+					caracter_aux[2] = '\0';
+				}
 								
-				aux[0] = caracter[i];
-				aux[1] = '\0';
+				int vezes = atoi(caracter_aux);
+				// below thr caracter_aux recovery the value of the char that repeat "vezes" times								
+				caracter_aux[0] = caracter[i];
+				caracter_aux[1] = '\0';
 				// print the char that repeat "vezes" times
 				for (int j = 0; j < vezes; j++) {
-					fprintf(saida_decod, aux);
-					printf(aux);
+					fprintf(saida_decod, caracter_aux);
+					printf(caracter_aux);
 				}
 				i++;
 
