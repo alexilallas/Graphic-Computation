@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);           // especifica o uso de cores e buffers
 	glutInitWindowSize(800, 600);                          // especifica as dimensoes da janela
 	glutInitWindowPosition(283, 64);                      // especifica aonde a janela aparece na tela
-	glutCreateWindow("Desenhando uma Reta");              // cria a janela
+	glutCreateWindow("Desenhando um Gráfico");              // cria a janela
 	init();
 	glutDisplayFunc(draw);                               // funcao que sera redesenhada pelo GLUT
 	glutKeyboardFunc(keyboard);                             // funcoes de teclado
