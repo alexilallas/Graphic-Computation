@@ -36,19 +36,14 @@ void draw(void) {
 	glClear(GL_COLOR_BUFFER_BIT);               // limpa a janela
 	glColor3f(1.0, 0.0, 0.0);                  // cor da linha
 	glBegin(GL_POINTS);
-
-	//desenho Reta
 	
 	int ponto1[2] = { 0, 100 };
 	int ponto2[2] = { 100, 0 };
 
 	float x;
 	float y;
-	float m;
-	m = (ponto2[1] - ponto1[1]) / (ponto2[0] - ponto1[0]);
-
+	
 	for (x = -100; x <= 100; x+=0.0001) {
-		//y = 10*sin(x/10);
 		y = 1/(x);
 		glVertex2f(x, y);
 	}
